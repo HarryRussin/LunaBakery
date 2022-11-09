@@ -14,8 +14,8 @@ const PictureComponent: React.FC<Props> = ({pictures, width, height}) =>{
     <div
       className={`w-[${width}px] flex overflow-x-scroll scrollbar-thin scrollbar-track-cgrey-xlight scrollbar-thumb-white snap-x overflow-y-hidden snap-mandatory`}
     >
-      {pictures.map((url) => (
-        <div className="snap-start relative">
+      {pictures.map((url,i) => (
+        <div key={i} className="snap-start relative">
           <Image
             src={url}
             layout="fixed"
