@@ -29,7 +29,7 @@ function Item(product: Product) {
         >
           BACK
         </p>
-        <div className="space-x-12 flex">
+        <div className="space-x-12 max-w-[1000px] justify-center flex">
           {/* Picture slider */}
           <PictureComponent pictures={product.imageUrls} width={500} height={400}/>
 
@@ -118,7 +118,7 @@ export function getServerSideProps({ params }: { params: any }) {
         '/LunaPhotos/danish.png',
         '/LunaPhotos/danish.png',
       ],
-      description: 'A lovely pastry its so good you should definitely eat it. exquisite mardem bonds and covalency, electronegativity is leng',
+      description: 'A lovely pastry Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam molestias asperiores libero non fuga distinctio aspernatur odit, commodi laudantium repellendus itaque eius deserunt vitae labore nemo mollitia perferendis temporibus obcaecati',
       reviews: [
         {
           rating: 0.8,
@@ -138,7 +138,7 @@ export function getServerSideProps({ params }: { params: any }) {
         },
       ],
       price: 1.2,
-      attributes: ['Sale', 'Cock', 'Sale', 'Cock', 'Sweet Treats'],
+      attributes: ['Sale','Freshly Baked','Seasonal', 'Sweet Treats'],
       stock: 12,
     },
   }
