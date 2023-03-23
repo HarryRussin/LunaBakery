@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         className="fixed bottom-8 right-8 rounded-md grid grid-cols-10 overflow-hidden border-2 box-content border-gray-800">
           <div className="relative col-span-9 bg-white py-4 pl-8 pr-4">
             <h3 className="text-lg">Like what you see?</h3>
-            <h3 className="text-xl text-accent-main">We're Hiring!</h3>
+            <h3 className="text-xl text-accent-main">We&apos;re Hiring!</h3>
             <Link replace href={'/join-us'}>
               <p className="text-sm text-accent-main underline hover:text-accent-light transition-colors">
                 more info
