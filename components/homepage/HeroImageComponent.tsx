@@ -62,7 +62,7 @@ function HeroImageComponent() {
   useEffect(() => {
     let inter = setInterval(changeImg, 5000)
     return () => clearInterval(inter)
-  }, [selectedId])
+  }, [selectedId,changeImg])
 
   const router = useRouter()
 
@@ -79,7 +79,7 @@ function HeroImageComponent() {
           /> */}
         <AnimateSharedLayout>
           {videos.map((vid, i) => (
-            <ShowVid vid={vid} id={i} selectedId={selectedId} />
+            <ShowVid key={i} vid={vid} id={i} selectedId={selectedId} />
           ))}
         </AnimateSharedLayout>
         {/* OVERLAY */}
@@ -91,6 +91,7 @@ function HeroImageComponent() {
           <h2 className=" text-[1.7rem] text-white font-abril font-bold">
             ENDULGE IN ARTISAN BAKERY
           </h2>
+          
           <button onClick={()=>router.replace('/shop')} className="mt-8 py-3 bg-accent-main px-24 font-abril text-white text-lg font-bold">
             EXPLORE
           </button>

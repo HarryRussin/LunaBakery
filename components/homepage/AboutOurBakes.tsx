@@ -22,7 +22,7 @@ function AboutOurBakes() {
           </div>
         </section>
         <div className="h-[600px] w-[600px] border-8 border-white box-content relative">
-          <Image src={'/LunaPhotos/danish.png'} layout="fill" />
+          <Image alt='bakery bread' src={'/LunaPhotos/danish.png'} layout="fill" />
         </div>
       </div>
     </div>
