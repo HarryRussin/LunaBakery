@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -19,6 +20,15 @@ function Item(product: Product) {
 
   return (
     <div className="">
+         <Head>
+        <title>{product.title} - Luna Artisan Bakery</title>
+        <meta
+          name="description"
+          content={product.description}
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <NavBarComponent selected="none" />
 
       <main className="flex mt-12 justify-center">

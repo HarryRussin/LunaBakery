@@ -6,7 +6,8 @@ import { useRouter } from 'next/router'
 import ProductComponent from '../components/shoppage/ProductComponent'
 import { Product } from '../typings'
 import Footer from '../components/Footer'
-import {availableAttributes} from '../data'
+import { availableAttributes } from '../data'
+import Head from 'next/head'
 const testProductData: Product[] = [
   {
     title: 'Danish Pastry',
@@ -59,7 +60,7 @@ const testProductData: Product[] = [
       },
     ],
     price: 1.2,
-    attributes: ['Savoury','White','Sweet Treats'],
+    attributes: ['Savoury', 'White', 'Sweet Treats'],
     stock: 0,
   },
   {
@@ -86,7 +87,7 @@ const testProductData: Product[] = [
       },
     ],
     price: 1.2,
-    attributes: ['Savoury','White'],
+    attributes: ['Savoury', 'White'],
     stock: 12,
   },
   {
@@ -113,7 +114,7 @@ const testProductData: Product[] = [
       },
     ],
     price: 1.2,
-    attributes: ['Savoury','Sweet Treats'],
+    attributes: ['Savoury', 'Sweet Treats'],
     stock: 12,
   },
   {
@@ -167,16 +168,21 @@ function Shop() {
         : filterquery?.split(',')
       : []
 
-      newfilters = newfilters.filter(e=>possibleFilters.includes(e))
+    newfilters = newfilters.filter((e) => possibleFilters.includes(e))
 
-    setFilters(['111111',...newfilters])
+    setFilters(['111111', ...newfilters])
     setsearches(searchquery ? searchquery.toString() : '')
   }, [router])
 
   useEffect(() => {
-    filters.length===1?setProducts(initialData):setProducts(products.filter(e=>e.attributes.some(r=>filters.indexOf(r)>=0)))
-  }, [filters,searches])
-  
+    filters.length === 1
+      ? setProducts(initialData)
+      : setProducts(
+          products.filter((e) =>
+            e.attributes.some((r) => filters.indexOf(r) >= 0),
+          ),
+        )
+  }, [filters, searches])
 
   useEffect(() => {
     if (searches === '') {
@@ -189,11 +195,11 @@ function Shop() {
     setFilters(filters.filter((e, i) => i !== id))
   }
 
-  function selectFilter(name:string,chosen:boolean){
-    if(chosen){
-      setFilters(filters.filter((e)=>e!==name))
-    }else{
-      setFilters([...filters,name])
+  function selectFilter(name: string, chosen: boolean) {
+    if (chosen) {
+      setFilters(filters.filter((e) => e !== name))
+    } else {
+      setFilters([...filters, name])
     }
   }
 
@@ -208,6 +214,15 @@ function Shop() {
 
   return (
     <div className="">
+      <Head>
+        <title>Shop - Luna Artisan Bakery</title>
+        <meta
+          name="description"
+          content="Artisan Bakery Homemade Bread Pastries and More Freshly Baked"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <NavBarComponent selected="shop" />
       <main className="px-20 py-16 mb-12">
         <h1 className="text-4xl font-medium font-mont">EXPLORE OUR BAKES</h1>
@@ -220,25 +235,38 @@ function Shop() {
               <div
                 onClick={() => setopenFilters(!openFilters)}
                 className={`bg-cgrey-xlight focus:outline ${
-                  openFilters ? 'w-[600px] h-[300px]' : 'w-[80px] items-center h-[24px] '
+                  openFilters
+                    ? 'w-[600px] h-[300px]'
+                    : 'w-[80px] items-center h-[24px] '
                 } px-2 py-1 box-content transition-all hover: z-[3] absolute top-0 left-0 font-medium mr-2 flex space-x-2`}
               >
                 {openFilters ? (
                   <div className="">
-                  <div className="flex space-x-2 items-center mb-2">
-                    <p>FILTERS</p> <BiCategory className="h-[16px] w-[16px]" />
-                  </div>
-                  <div className="flex flex-wrap gap-4">
-                  {
-                    possibleFilters.map((filter,i)=>{
-                      let chosen = false
-                      if (filters.includes(filter)) {
-                        chosen = true
-                      }
-                      return <button key={i} onClick={()=>selectFilter(filter,chosen)} className={`${chosen?'bg-[#EBC5A3] hover:bg-[#f4dbc3]':'bg-white hover:bg-gray-100'} py-2 px-4 rounded-lg`}>{filter}</button>
-                    })
-                  }
-                  </div>
+                    <div className="flex space-x-2 items-center mb-2">
+                      <p>FILTERS</p>{' '}
+                      <BiCategory className="h-[16px] w-[16px]" />
+                    </div>
+                    <div className="flex flex-wrap gap-4">
+                      {possibleFilters.map((filter, i) => {
+                        let chosen = false
+                        if (filters.includes(filter)) {
+                          chosen = true
+                        }
+                        return (
+                          <button
+                            key={i}
+                            onClick={() => selectFilter(filter, chosen)}
+                            className={`${
+                              chosen
+                                ? 'bg-[#EBC5A3] hover:bg-[#f4dbc3]'
+                                : 'bg-white hover:bg-gray-100'
+                            } py-2 px-4 rounded-lg`}
+                          >
+                            {filter}
+                          </button>
+                        )
+                      })}
+                    </div>
                   </div>
                 ) : (
                   <>
@@ -287,7 +315,7 @@ function Shop() {
         </div>
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   )
 }

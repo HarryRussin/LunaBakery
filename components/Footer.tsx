@@ -1,4 +1,5 @@
 import { BiPaperPlane } from 'react-icons/bi'
+import {useState} from 'react'
 import {
   AiFillTwitterSquare,
   AiOutlineInstagram,
@@ -9,6 +10,9 @@ import {BsCodeSlash} from 'react-icons/bs'
 import Link from 'next/link'
 
 function Footer() {
+
+  const [newsletter, setnewsletter] = useState('')
+
   return (
     <footer id='contact' className="bg-cgrey-dark px-20 pt-20 pb-12 flex flex-col space-y-24">
       {/* Top layer Email and Socials */}
@@ -19,14 +23,16 @@ function Footer() {
             JOIN OUR MAILING LIST
           </h3>
           <div className="relative w-fit">
-            <form onSubmit={(e)=>{e.preventDefault();alert("You've Subscribed to our Bakery Newsletter!");e.currentTarget.textContent = ''}}>
+            <form onSubmit={(e)=>{e.preventDefault();alert("You've Subscribed to our Bakery Newsletter!");setnewsletter('')}}>
               <input
                 type="email"
+                value={newsletter}
+                onChange={(e)=>setnewsletter(e.target.value)}
                 required
                 placeholder="Your Email"
                 className="text-cgrey-light focus:outline-none transition-all duration-150 focus:border-white focus:text-white focus:placeholder:text-white w-[45vw] pl-4 bg-transparent font-semibold border-b-[3px] py-1 border-cgrey-light"
               />
-              <BiPaperPlane onClick={()=>{}} className="absolute text-accent-light w-6 h-6 top-1 right-4" />
+              <button type='submit'><BiPaperPlane className="absolute text-accent-light w-6 h-6 top-1 right-4" /></button>
             </form>
           </div>
         </div>
